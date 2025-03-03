@@ -17,11 +17,11 @@ void initialize_test_values(Task tasks[], unsigned int *num_tasks)
 {
     *num_tasks = 5; // Example: Setting 5 predefined tasks
 
-    tasks[0] = (Task){1, "Design", 1, 3, 0, {}};
-    tasks[1] = (Task){2, "Development", 4, 8, 1, {1}};
-    tasks[2] = (Task){3, "Testing", 9, 10, 1, {2}};
-    tasks[3] = (Task){4, "Deployment", 12, 12, 2, {2, 3}};
-    tasks[4] = (Task){5, "Review", 11, 12, 1, {3}};
+    tasks[0] = (Task){0, "Design", 1, 3, 1, {2}};
+    tasks[1] = (Task){1, "Development", 4, 8, 1, {0}};
+    tasks[2] = (Task){2, "Testing", 9, 10, 1, {1, 4}};
+    tasks[3] = (Task){3, "Deployment", 12, 12, 2, {1, 2}};
+    tasks[4] = (Task){4, "Review", 11, 12, 1, {2}};
 }
 
 void print_cell(char *string, int width)
@@ -122,6 +122,7 @@ void get_dependencies(unsigned int * num_dependency, unsigned int dependency_id[
         {
             printf("Please enter dependent task (%d/%u):", i+1, *num_dependency);
             scanf("%u", &dependency_id[i]); // store task id's in an array
+            dependency_id[i]--; // adjust to start counting from zero
         }
     }
     bubble_sort(dependency_id, *num_dependency); // sort id's
@@ -140,6 +141,9 @@ void get_Task_data(Task tasks[], unsigned int * num_tasks)
         // Prompts user to Enter task name
         puts("Please enter the task name:");
         scanf("%s", tasks[i].name); // store name in char array
+
+        // Initialize task id
+        tasks[i].id = i;
 
         // call function to get months input to the current task from user
         get_months(&tasks[i].start_month, &tasks[i].end_month);
@@ -182,7 +186,7 @@ void display_Gantt_diagram(Task tasks[], int num_tasks)
         // prints the dependenies
         for (j = 0; j < tasks[i].dependencies; j++)
         {
-            printf(" %u", tasks[i].dependency_id[j]);
+            printf(" %u", tasks[i].dependency_id[j]+1);
         }
         printf("\n");
         print_char('-'); // prints separations line

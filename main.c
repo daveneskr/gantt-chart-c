@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #include "my_library.h"
+#include "dependecy.h"
+
+#ifdef _WIN32
+#define system("clear); system("cls")
+#endif
 
 /************ TO-DO's *************
 
@@ -27,11 +31,10 @@ int main(void)
      ************************************************/
     initial_action(tasks, &num_tasks);
 
+    display_Gantt_diagram(tasks, num_tasks);
 
     do
     {
-        display_Gantt_diagram(tasks, num_tasks);
-
         puts("If you wish to edit the Gantt please type \"edit\" "
         "/ If you wish to run a test, type \"test\" "
         "or to exit, type \"quit\" and then press enter to execute your option.");
@@ -40,15 +43,25 @@ int main(void)
         if (strcmp("edit", response) == 0)
         {
             action_edit(tasks, &num_tasks);
+            system("clear");
+            display_Gantt_diagram(tasks, num_tasks);
         }
         else if (strcmp("test", response) == 0)
         {
-            // add dependency function here
+            // Print dependency chain
+            printf("\nDependency Chain:\n");
+            for (int i = 0; i < num_tasks; i++)
+            {
+                if (tasks[i].dependencies != 0) // filter out tasks with no dependencies
+                {
+                    int visited[MAX_TASKS] = {0}; // track visited tasks
+                    print_dependency_chain(tasks, tasks[i].id, visited);
+                }
+            }
         }
     } while (strcmp("quit", response) != 0);
 
-
-
+    system("clear");
 
     return(0);
 }
