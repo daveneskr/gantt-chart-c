@@ -17,11 +17,11 @@ void initialize_test_values(Task tasks[], unsigned int *num_tasks)
 {
     *num_tasks = 10;
 
-    tasks[0] = (Task){0, "Find_Bank", 1, 2, 1, {9}};
+    tasks[0] = (Task){0, "Find_Bank", 1, 2, 0, {}};
     tasks[1] = (Task){1, "Get_mortage_approval", 2, 2, 1, {0}};
-    tasks[2] = (Task){2, "Draw_Down", 4, 6, 2, {0,1}};
+    tasks[2] = (Task){2, "Draw_Down", 4, 6, 3, {0,1,4}};
     tasks[3] = (Task){3, "Build_Foundation", 3, 4, 1, {2}};
-    tasks[4] = (Task){4, "Build_Walls", 4, 5, 1, {9}};
+    tasks[4] = (Task){4, "Build_Walls", 4, 5, 0, {}};
     tasks[5] = (Task){5, "Roof_and_ceiling", 5, 6, 2, {3,4}};
     tasks[6] = (Task){6, "Plumbing", 7, 7, 1, {5}};
     tasks[7] = (Task){7, "Electrics", 8, 9, 1, {6}};

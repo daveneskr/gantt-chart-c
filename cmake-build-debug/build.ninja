@@ -67,12 +67,6 @@ build CMakeFiles/Assignment_2.dir/dependecy.c.o: C_COMPILER__Assignment_2_unscan
   OBJECT_DIR = CMakeFiles/Assignment_2.dir
   OBJECT_FILE_DIR = CMakeFiles/Assignment_2.dir
 
-build CMakeFiles/Assignment_2.dir/your_mans_code.c.o: C_COMPILER__Assignment_2_unscanned_Debug /Users/davidneskrabal/CLionProjects/Assignment_2/your_mans_code.c || cmake_object_order_depends_target_Assignment_2
-  DEP_FILE = CMakeFiles/Assignment_2.dir/your_mans_code.c.o.d
-  FLAGS = -g -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.0 -fcolor-diagnostics
-  OBJECT_DIR = CMakeFiles/Assignment_2.dir
-  OBJECT_FILE_DIR = CMakeFiles/Assignment_2.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Assignment_2
@@ -81,7 +75,7 @@ build CMakeFiles/Assignment_2.dir/your_mans_code.c.o: C_COMPILER__Assignment_2_u
 #############################################
 # Link the executable Assignment_2
 
-build Assignment_2: C_EXECUTABLE_LINKER__Assignment_2_Debug CMakeFiles/Assignment_2.dir/main.c.o CMakeFiles/Assignment_2.dir/my_library.c.o CMakeFiles/Assignment_2.dir/dependecy.c.o CMakeFiles/Assignment_2.dir/your_mans_code.c.o
+build Assignment_2: C_EXECUTABLE_LINKER__Assignment_2_Debug CMakeFiles/Assignment_2.dir/main.c.o CMakeFiles/Assignment_2.dir/my_library.c.o CMakeFiles/Assignment_2.dir/dependecy.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.0
   OBJECT_DIR = CMakeFiles/Assignment_2.dir
   POST_BUILD = :
