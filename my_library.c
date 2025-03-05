@@ -10,18 +10,24 @@
 void display_menu(void)
 {
     printf("%s\n", "Welcome to the Gantt Generator\n"
-    "Would you like to use the test example or create your on Gantt from scratch? (test or create)");
+    "Would you like to use the test example or create your own Gantt from scratch? (test or create)");
 }
 
 void initialize_test_values(Task tasks[], unsigned int *num_tasks)
 {
-    *num_tasks = 5; // Example: Setting 5 predefined tasks
+    *num_tasks = 10;
 
-    tasks[0] = (Task){0, "Design", 1, 3, 1, {2}};
-    tasks[1] = (Task){1, "Development", 4, 8, 1, {0}};
-    tasks[2] = (Task){2, "Testing", 9, 10, 1, {1, 4}};
-    tasks[3] = (Task){3, "Deployment", 12, 12, 2, {1, 2}};
-    tasks[4] = (Task){4, "Review", 11, 12, 1, {2}};
+    tasks[0] = (Task){0, "Find_Bank", 1, 2, 1, {9}};
+    tasks[1] = (Task){1, "Get_mortage_approval", 2, 2, 1, {0}};
+    tasks[2] = (Task){2, "Draw_Down", 4, 6, 2, {0,1}};
+    tasks[3] = (Task){3, "Build_Foundation", 3, 4, 1, {2}};
+    tasks[4] = (Task){4, "Build_Walls", 4, 5, 1, {9}};
+    tasks[5] = (Task){5, "Roof_and_ceiling", 5, 6, 2, {3,4}};
+    tasks[6] = (Task){6, "Plumbing", 7, 7, 1, {5}};
+    tasks[7] = (Task){7, "Electrics", 8, 9, 1, {6}};
+    tasks[8] = (Task){8, "Inspect_Build", 9, 10, 1, {4}};
+    tasks[9] = (Task){9, "Snagging", 10, 11, 2, {7,8}};
+
 }
 
 void print_cell(char *string, int width)
@@ -120,7 +126,7 @@ void get_dependencies(unsigned int * num_dependency, unsigned int dependency_id[
         // prompt user to get the task numbers the current task is dependent on
         for (int i = 0; i < *num_dependency; i++)
         {
-            printf("Please enter dependent task (%d/%u):", i+1, *num_dependency);
+            printf("Please enter dependent task (%d/%u):\n", i+1, *num_dependency);
             scanf("%u", &dependency_id[i]); // store task id's in an array
             dependency_id[i]--; // adjust to start counting from zero
         }
@@ -163,7 +169,7 @@ void display_Gantt_diagram(Task tasks[], int num_tasks)
     // print row for each task, depicting in which months is the task being worked on
     for (i = 0; i < num_tasks; i++)
     {
-        printf("%-20s", tasks[i].name); // Print task name aligned
+        printf("%-25s", tasks[i].name); // Print task name aligned
 
         // print a cell for each month filling the cell if the task
         // is being worked on that month

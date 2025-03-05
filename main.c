@@ -35,7 +35,7 @@ int main(void)
 
     do
     {
-        puts("If you wish to edit the Gantt please type \"edit\" "
+        puts("\nIf you wish to edit the Gantt please type \"edit\" "
         "/ If you wish to run a test, type \"test\" "
         "or to exit, type \"quit\" and then press enter to execute your option.");
         scanf("%s", response);
@@ -48,12 +48,14 @@ int main(void)
         }
         else if (strcmp("test", response) == 0)
         {
-            // Print dependency chain
-            printf("\nDependency Chain:\n");
-            for (int i = 0; i < num_tasks; i++)
+            puts("Enter the name of the task you would like to test:");
+            scanf("%s", response);
+            for (unsigned int i = 0; i < num_tasks; i++)
             {
-                if (tasks[i].dependencies != 0) // filter out tasks with no dependencies
+                if (strcmp(tasks[i].name, response) == 0)
                 {
+                    // Print dependency chain
+                    printf("\nDependency Chain v.1:\n");
                     int visited[MAX_TASKS] = {0}; // track visited tasks
                     print_dependency_chain(tasks, tasks[i].id, visited);
                 }

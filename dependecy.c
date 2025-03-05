@@ -10,7 +10,7 @@ void print_dependency_chain(Task tasks[], int task_id, int visited[])
 {
     if (visited[task_id])  // if task is already visited in this recursion, cycle detected
     {
-        printf(" !! Circular dependency detected involving task %d (%s) !!\n", task_id+1, tasks[task_id].name);
+        printf(" → %d !! Circular dependency detected !!\n", task_id+1);
         return;
     }
 
@@ -18,14 +18,14 @@ void print_dependency_chain(Task tasks[], int task_id, int visited[])
 
     if (tasks[task_id].dependencies == 0)
     {
-        printf(" → %s\n", tasks[task_id].name);
+        printf(" → %d\n", task_id+1);
         visited[task_id] = 0;
         return;
     }
 
     for (int i = 0; i < tasks[task_id].dependencies; i++)
     {
-        printf(" → %s", tasks[task_id].name);
+        printf(" → %d", task_id+1);
         print_dependency_chain(tasks, tasks[task_id].dependency_id[i], visited);
     }
 

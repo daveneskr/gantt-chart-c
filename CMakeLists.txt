@@ -7,4 +7,5 @@ add_executable(Assignment_2 main.c
         my_library.c
         my_library.h
         dependecy.c
-        dependecy.h)
+        dependecy.h
+)
