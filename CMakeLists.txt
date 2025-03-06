@@ -8,4 +8,6 @@ add_executable(Assignment_2 main.c
         my_library.h
         dependecy.c
         dependecy.h
+        ascii_art.c
+        ascii_art.h
 )
