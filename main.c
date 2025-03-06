@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "ascii_art.h"
-#include "dependecy.h"
+#include "dependency.h"
 #include "tasks.h"
 #include "display_Gantt.h"
 #include "my_library.h"
@@ -63,7 +62,7 @@ int main(void)
             // ask user which task they would like to test
             puts("Enter the name of the task you would like to test:");
             scanf("%s", response);
-            // look through tasks to find one mathcing to response
+            // look through tasks to find one matching to response
             for (unsigned int i = 0; i < num_tasks; i++)
             {
                 if (strcmp(tasks[i].name, response) == 0)

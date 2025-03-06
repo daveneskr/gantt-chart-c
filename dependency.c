@@ -2,7 +2,7 @@
 // Created by David Neškrabal on 03.03.2025.
 //
 
-#include "dependecy.h"
+#include "dependency.h"
 #include "my_library.h"
 #include <stdio.h>
 

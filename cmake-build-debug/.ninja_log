@@ -1,13 +1,11 @@
 # ninja log v6
-3	483	1741205533043176243	CMakeFiles/Assignment_2.dir/main.c.o	5ebe34f485f3ec82
-3	232	1741181912812920318	CMakeFiles/Assignment_2.dir/my_library.c.o	5a4719e78b71474c
-483	656	1741205533522710954	Assignment_2	1be0669fd6e08925
-4	262	1741189900253064816	CMakeFiles/Assignment_2.dir/dependecy.c.o	cfe7554bcdad6ce8
-5	224	1741175056290105593	CMakeFiles/Assignment_2.dir/your_mans_code.c.o	cc14d1370619dcda
-5	483	1741205533044845970	CMakeFiles/Assignment_2.dir/ascii_art.c.o	cae3a59a4c8a4c86
-3	235	1741262006472073820	CMakeFiles/Assignment_2.dir/my_library.c.o	5a4719e78b71474c
-4	236	1741262006472531591	CMakeFiles/Assignment_2.dir/display_Gantt.c.o	a959ec0c156a47d6
-5	237	1741262006473667080	CMakeFiles/Assignment_2.dir/tasks.c.o	8d6d09b9d442a306
-2	222	1741262037948631922	CMakeFiles/Assignment_2.dir/main.c.o	5ebe34f485f3ec82
+3	301	1741278025239197676	CMakeFiles/Assignment_2.dir/display_Gantt.c.o	a959ec0c156a47d6
+3	301	1741278025238846399	CMakeFiles/Assignment_2.dir/ascii_art.c.o	cae3a59a4c8a4c86
+304	479	1741278025540353215	Assignment_2	316ddbd2dcee7b4f
 3	222	1741262037949020696	CMakeFiles/Assignment_2.dir/dependecy.c.o	cfe7554bcdad6ce8
-223	401	1741262038168798585	Assignment_2	c4a1f5f609c2c365
+5	224	1741175056290105593	CMakeFiles/Assignment_2.dir/your_mans_code.c.o	cc14d1370619dcda
+3	300	1741278025238691905	CMakeFiles/Assignment_2.dir/dependency.c.o	efbf16c8b64cbd0e
+3	304	1741278025239358919	CMakeFiles/Assignment_2.dir/tasks.c.o	8d6d09b9d442a306
+2	300	1741278025238193300	CMakeFiles/Assignment_2.dir/main.c.o	5ebe34f485f3ec82
+3	301	1741278025238527328	CMakeFiles/Assignment_2.dir/my_library.c.o	5a4719e78b71474c
+6	89	1741280279872871372	build.ninja	641870f9e7fa84fd
