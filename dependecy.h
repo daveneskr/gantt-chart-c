@@ -5,7 +5,7 @@
 #ifndef DEPENDECY_H
 #define DEPENDECY_H
 
-#include "my_library.h"
+#include "tasks.h"
 
 int check_cycle(Task tasks[], int num_tasks, int task_id, int visited[]);
 

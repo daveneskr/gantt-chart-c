@@ -10,4 +10,8 @@ add_executable(Assignment_2 main.c
         dependecy.h
         ascii_art.c
         ascii_art.h
+        display_Gantt.c
+        display_Gantt.h
+        tasks.c
+        tasks.h
 )

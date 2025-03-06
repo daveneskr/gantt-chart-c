@@ -3,8 +3,10 @@
 #include <string.h>
 
 #include "ascii_art.h"
-#include "my_library.h"
 #include "dependecy.h"
+#include "tasks.h"
+#include "display_Gantt.h"
+#include "my_library.h"
 
 #ifdef _WIN32
 #define system("clear); system("cls")
@@ -24,6 +26,8 @@ int main(void)
      * storing the data in structure data type
      * testing for valid input
      ************************************************/
+
+
     initial_action(tasks, &num_tasks);
 
     display_Gantt_diagram(tasks, num_tasks);
@@ -38,7 +42,7 @@ int main(void)
         if (strcmp("edit", response) == 0)
         {
             action_edit(tasks, &num_tasks);
-            system("clear");
+            clear_screen();
             display_Gantt_diagram(tasks, num_tasks);
         }
         else if (strcmp("test", response) == 0)
@@ -58,7 +62,7 @@ int main(void)
         }
     } while (strcmp("quit", response) != 0);
 
-    system("clear");
+    clear_screen();
 
     print_ascii_art();
 
