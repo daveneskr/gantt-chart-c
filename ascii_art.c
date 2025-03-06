@@ -9,20 +9,23 @@
 #include "ascii_art.h"
 #include <stdio.h>
 
+/* Prints the tree
+ */
 void print_ascii_art()
 {
-  printf("                             # #### ####\n");
-  printf("                         ### \\""/#|### |/####\n");
-  printf("                       ##\\""/#/ \\""||/##/_/##/_#\n");
-  printf("                      ###  \\/""###|/ \\""/ # ###\n");
-  printf("                   ##_\\""_#\\""_\\""## | #/###_/_####\n");
-  printf("                   ## #### # \\"" #| /  #### ##/##\n");
-  printf("                   __#_--###`  |{,###---###-~\n");
-  printf("                               \\"""" }{\n");
-  printf("                              }}{\n");
-  printf("                               }}{\n");
-  printf("                               {{}}\n");
-  printf("                          , -=-~{ .-^- _\n");
-  printf("                                `}\n");
-  printf("                                 {\n");
+    // print each line of the tree
+    printf("                             # #### ####\n");
+    printf("                         ### \\""/#|### |/####\n");
+    printf("                       ##\\""/#/ \\""||/##/_/##/_#\n");
+    printf("                      ###  \\/""###|/ \\""/ # ###\n");
+    printf("                   ##_\\""_#\\""_\\""## | #/###_/_####\n");
+    printf("                   ## #### # \\"" #| /  #### ##/##\n");
+    printf("                   __#_--###`  |{,###---###-~\n");
+    printf("                               \\"""" }{\n");
+    printf("                              }}{\n");
+    printf("                               }}{\n");
+    printf("                               {{}}\n");
+    printf("                          , -=-~{ .-^- _\n");
+    printf("                                `}\n");
+    printf("                                 {\n");
 }

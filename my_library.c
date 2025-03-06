@@ -6,6 +6,10 @@
 
 #include "my_library.h"
 
+/* Swaps the two values
+ * - int *a: a pointer to the variable to be swapped with b
+ * - int *b: -||-
+ */
 void swap(int *a, int *b)
 {
     int tmp = *a; // store a in tmp to prevent overwriting data
@@ -13,18 +17,35 @@ void swap(int *a, int *b)
     *b = tmp;
 }
 
-void bubble_sort(int arr[], int size)
+/* Uses the bubble sort algorithm to store an array of numbers
+ * - int arr[]: the array to sort
+ * - int size: size of the array
+ */
+void bubble_sort(int arr[], int n)
 {
-    int i, j;
-
-    for(i = 0; i < size; i++)
+    int i, j, swapped;
+    // loop used to keep count of how many swaps
+    // where already performed
+    for (i = 0; i < n - 1; i++)
     {
-        for(j = 0; j < size - 1 - i; j++)
+        swapped = 0; // used to check if array is already sorted
+        // compare two  adjacent elements
+        // and swap them if the first one is bigger
+        // the guard accounts for elements at the end of the array
+        // that where already sorted ("bubbled up")
+        for (j = 0; j < n - i - 1; j++)
         {
-            if(arr[j] > arr[j + 1])
+            if (arr[j] > arr[j + 1])
             {
+                // Swap arr[j] and arr[j+1]
                 swap(&arr[j], &arr[j+1]);
+                swapped = 1;
             }
+        }
+        // if no two elements were swapped, array is already sorted
+        if (swapped == 0)
+        {
+            return;
         }
     }
 }

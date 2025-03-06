@@ -8,10 +8,6 @@
 #include "display_Gantt.h"
 #include "my_library.h"
 
-#ifdef _WIN32
-#define system("clear); system("cls")
-#endif
-
 int main(void)
 {
     /******************** SECTION 0 *****************

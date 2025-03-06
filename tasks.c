@@ -9,12 +9,18 @@
 #include "tasks.h"
 #include "my_library.h"
 
+/* Displays the welcoming message and users options
+ */
 void display_menu(void)
 {
     printf("%s\n", "Welcome to the Gantt Generator\n"
     "Would you like to use the test example or create your own Gantt from scratch? (test or create)");
 }
 
+/* Initialize an array of Task's with test values
+ * - Task tasks[]: The array you want the test values to be stored in
+ * - unsigned int *num_tasks: The number of tasks of the test values
+ */
 void initialize_test_values(Task tasks[], unsigned int *num_tasks)
 {
     *num_tasks = 10;
@@ -32,6 +38,11 @@ void initialize_test_values(Task tasks[], unsigned int *num_tasks)
 
 }
 
+/* Prompts user to input start/end month
+ * and store them in the Task structure
+ * - unsigned int * start_month: number representing the start month
+ * - unsigned int * end_month: number representing the end month
+ */
 void get_months(unsigned int * start_month, unsigned int * end_month)
 {
     // keep prompting user to get starting month until valid input is inserted (1-12)
@@ -55,10 +66,16 @@ void get_months(unsigned int * start_month, unsigned int * end_month)
             puts("End month cannot be before start month. Try again.");
         }
 
+        // checks the validity of the end month
     } while (*end_month < *start_month || *end_month > 12);
 }
 
-void get_dependencies(unsigned int * num_dependency, unsigned int dependency_id[])
+/* Gets information about the dependencies of a task
+ * - unsigned int * num_dependency: The number of dependencies of a task
+ * - unsigned int dependency_id[]: array to store the id of the dependent tasks
+ * - int num_tasks: Overall number of tasks
+ */
+void get_dependencies(unsigned int * num_dependency, unsigned int dependency_id[], int num_tasks)
 {
     // Ask if there are any dependencies
     puts("Please enter how many dependencies this task has:");
@@ -68,14 +85,30 @@ void get_dependencies(unsigned int * num_dependency, unsigned int dependency_id[
         // prompt user to get the task numbers the current task is dependent on
         for (int i = 0; i < *num_dependency; i++)
         {
-            printf("Please enter dependent task (%d/%u):\n", i+1, *num_dependency);
-            scanf("%u", &dependency_id[i]); // store task id's in an array
+            do
+            {
+                printf("Please enter dependent task (%d/%u):\n", i+1, *num_dependency);
+                scanf("%u", &dependency_id[i]); // store task id's in an array
+                // inform user of invalid input
+                if (dependency_id[i] > num_tasks)
+                {
+                    printf("Dependent task does not exist.\n%s",
+                        "Value must be less than number of tasks.\n");
+                }
+                // asks again if invalid input
+            } while (dependency_id[i] < 1 || dependency_id[i] > num_tasks);
+
             dependency_id[i]--; // adjust to start counting from zero
         }
     }
     bubble_sort(dependency_id, *num_dependency); // sort id's
 }
 
+/* Prompts user to get input about the tasks and all related information
+ * and store it in a Task structure
+ * - Task tasks[]: The array of Tasks the input is stored in
+ * - unsigned int *num_tasks: The number of tasks
+ */
 void get_Task_data(Task tasks[], unsigned int * num_tasks)
 {
     int i;
@@ -86,25 +119,32 @@ void get_Task_data(Task tasks[], unsigned int * num_tasks)
     // prompt user to input details about each task
     for (i = 0; i < *num_tasks; i++)
     {
-        // Prompts user to Enter task name
+        // prompts user to enter task name
         puts("Please enter the task name:");
         scanf("%s", tasks[i].name); // store name in char array
 
-        // Initialize task id
+        // initialize task id
         tasks[i].id = i;
 
         // call function to get months input to the current task from user
         get_months(&tasks[i].start_month, &tasks[i].end_month);
 
         // call function to get dependency input to the current task from user
-        get_dependencies(&tasks[i].dependencies, tasks[i].dependency_id);
+        get_dependencies(&tasks[i].dependencies, tasks[i].dependency_id, *num_tasks);
     }
 }
 
+/* Sets up the program at the beginning, get values for Tasks
+ * 1. Ask user where to get values for tasks
+ *    a) user input - prompts user to get details about each task
+ *    b) test values - inputs test values to struct tasks
+ * 2. Stores values in Task tasks
+ * - Task tasks[]: array of Task to store the value in
+ * - unsigned int *num_tasks: Final number of tasks
+ */
 void initial_action(Task tasks[], unsigned int *num_tasks)
 {
     char response[20];
-    bool finished = false;
 
     // display welcome message
     display_menu();
@@ -118,35 +158,39 @@ void initial_action(Task tasks[], unsigned int *num_tasks)
         if (strcmp(response, "test") == 0)
         {
             initialize_test_values(tasks, num_tasks); // inputs test values to struct tasks
-            finished = true; // assign true to finished to exit the do-while loop
+            break; // stop prompting user
         }
-        else if (strcmp(response, "create") == 0)
+        if (strcmp(response, "create") == 0)
         {
-            // prompts user get details about each task
+            // prompts user to get details about each task
             get_Task_data(tasks, num_tasks);
-            finished = true; // assign true to finished to exit the do-while loop
+            break; // stop prompting user
         }
-        else
-        {
-            // inform user that wrong input has been given
-            puts("Wrong input - Enter \"test\" or \"create\"");
-        }
-    } while (!finished);
+        // inform user that wrong input has been given
+        puts("Wrong input - Enter \"test\" or \"create\"");
+    } while (1);
 }
 
+/* Prompts user to edit a task
+ * - Task tasks[]: array of Task for which user picks a task to edit
+ * - unsigned int *num_tasks: Number of tasks stored in the array
+ */
 void action_edit(Task tasks[], unsigned int *num_tasks)
 {
     char response[20];
     int i;
     bool found = false;
 
+    // continue getting user input until valid
     do
     {
         puts("Please enter the task name you wish to change exactly");
         scanf("%s", response);
 
+        // go through each task and see if it matches the response
         for (i = 0; i < *num_tasks; i++)
         {
+            // if yes, break loop early, change guard
             if (strcmp(tasks[i].name, response) == 0)
             {
                 found = true;
@@ -155,10 +199,13 @@ void action_edit(Task tasks[], unsigned int *num_tasks)
         }
     } while (!found);
 
+    // prompt user to choose new task name
     puts("Please enter the new task or write its old one");
-    scanf("%s", tasks[i].name);
+    scanf("%19s", tasks[i].name);
 
+    // get new months
     get_months(&tasks[i].start_month, &tasks[i].end_month);
 
-    get_dependencies(&tasks[i].dependencies, tasks[i].dependency_id);
+    // get new dependencies
+    get_dependencies(&tasks[i].dependencies, tasks[i].dependency_id, *num_tasks);
 }

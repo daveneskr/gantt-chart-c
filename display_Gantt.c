@@ -7,6 +7,9 @@
 
 #include "display_Gantt.h"
 
+/* Prints one character repeatedly, according to the size of the header
+ * - char a: character to be printed (usually '-' or '_')
+ */
 void print_char(char a)
 {
     // print character (size of big header cell, month header cell * 12, dependencies header cell) times
@@ -17,6 +20,11 @@ void print_char(char a)
     printf("\n");
 }
 
+/* Prints a table cell with a sting centered inside
+ * careful, only prints the right border ('|')
+ * - char *string: string to be inserted and centered
+ * - int width: width of the cell
+ */
 void print_cell(char *string, int width)
 {
     int length = strlen(string);  // get length of the string
@@ -27,23 +35,29 @@ void print_cell(char *string, int width)
     printf("|%*s%s%*s", white_space, "", string, white_space + extra_padding, "");
 }
 
+/* Prints a header for the Gantt diagram, with month names
+ */
 void print_header(void)
 {
     print_char('_'); // print separation line
     printf("%20s", ""); // print first cell (empty space)
-    // initialize months array of strings
-    char columns[][13] = { "January", "February", "March", "April", "May", "June",
+    // initialize columns array of strings
+    static char columns[][13] = { "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December", "Dependencies"};
 
     // print column header for each month
     for (int i = 0; i < 13; i++)
     {
-        print_cell(columns[i],10);
+        print_cell(columns[i],CELL_SIZE);
     }
     printf("|\n");
     print_char('-'); // print separation line
 }
 
+/* Displays the Gantt diagram of the tasks
+ * - Task tasks[]: the array of Tasks to create the diagram from
+ * - int num_tasks: Actual number of tasks in the array
+ */
 void display_Gantt_diagram(Task tasks[], int num_tasks)
 {
     int i, j; // initialize loop counter variables
@@ -64,15 +78,15 @@ void display_Gantt_diagram(Task tasks[], int num_tasks)
             // within range of start and end month
             if (j >= tasks[i].start_month && j <= tasks[i].end_month)
             {
-                print_cell("XXX", 10); // fill the cell with x's
+                print_cell("XXX", CELL_SIZE); // fill the cell with x's
             }
             // keep the cell empty
             else
             {
-                print_cell("", 10);
+                print_cell("", CELL_SIZE);
             }
         }
-        printf("|"); // box of the last cell
+        printf("|"); // box off the last cell
 
         // prints the dependenies
         for (j = 0; j < tasks[i].dependencies; j++)
