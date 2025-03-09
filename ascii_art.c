@@ -26,6 +26,6 @@ void print_ascii_art()
     printf("                               }}{\n");
     printf("                               {{}}\n");
     printf("                          , -=-~{ .-^- _\n");
-    printf("                                `}\n");
-    printf("                                 {\n");
+    printf("                              /  `}     '\n");
+    printf("                              '   {\n");
 }

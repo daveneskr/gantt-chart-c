@@ -25,16 +25,30 @@ void initialize_test_values(Task tasks[], unsigned int *num_tasks)
 {
     *num_tasks = 10;
 
-    tasks[0] = (Task){0, "Find_Bank", 1, 2, 0, {}};
-    tasks[1] = (Task){1, "Get_mortage_approval", 2, 2, 1, {0}};
-    tasks[2] = (Task){2, "Draw_Down", 4, 6, 3, {0,1,4}};
-    tasks[3] = (Task){3, "Build_Foundation", 3, 4, 1, {2}};
-    tasks[4] = (Task){4, "Build_Walls", 4, 5, 0, {}};
-    tasks[5] = (Task){5, "Roof_and_ceiling", 5, 6, 2, {3,4}};
-    tasks[6] = (Task){6, "Plumbing", 7, 7, 1, {5}};
-    tasks[7] = (Task){7, "Electrics", 8, 9, 1, {6}};
-    tasks[8] = (Task){8, "Inspect_Build", 9, 10, 1, {4}};
-    tasks[9] = (Task){9, "Snagging", 10, 11, 2, {7,8}};
+    // enum statement for clearer identification of tasks
+    enum Task_ID {
+        FIND_BANK,
+        GET_MORTGAGE_APPROVAL,
+        DRAW_DOWN,
+        BUILD_FOUNDATION,
+        BUILD_WALLS,
+        ROOF_AND_CEILING,
+        PLUMBING,
+        ELECTRICS,
+        INSPECT_BUILD,
+        SNAGGING
+    };
+
+    tasks[0] = (Task){FIND_BANK, "Find_Bank", 1, 2, 0, {}};
+    tasks[1] = (Task){GET_MORTGAGE_APPROVAL, "Get_mortage_approval", 2, 2, 1, {FIND_BANK}};
+    tasks[2] = (Task){DRAW_DOWN, "Draw_Down", 4, 6, 2, {FIND_BANK,GET_MORTGAGE_APPROVAL}};
+    tasks[3] = (Task){BUILD_FOUNDATION, "Build_Foundation", 3, 4, 1, {DRAW_DOWN}};
+    tasks[4] = (Task){BUILD_WALLS, "Build_Walls", 4, 5, 0, {}};
+    tasks[5] = (Task){ROOF_AND_CEILING, "Roof_and_ceiling", 5, 6, 2, {BUILD_FOUNDATION,BUILD_WALLS}};
+    tasks[6] = (Task){PLUMBING, "Plumbing", 7, 7, 1, {ROOF_AND_CEILING}};
+    tasks[7] = (Task){ELECTRICS, "Electrics", 8, 9, 1, {PLUMBING}};
+    tasks[8] = (Task){INSPECT_BUILD, "Inspect_Build", 9, 10, 1, {BUILD_WALLS}};
+    tasks[9] = (Task){SNAGGING, "Snagging", 10, 11, 2, {ELECTRICS,INSPECT_BUILD}};
 
 }
 
