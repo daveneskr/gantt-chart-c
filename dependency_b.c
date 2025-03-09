@@ -1,6 +1,6 @@
 // Created by Zhang Beichen
 
-#include "dependency.h"
+#include "dependency_b.h"
 #include <stdio.h>
 #include <stdbool.h>
 

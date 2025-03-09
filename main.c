@@ -2,7 +2,8 @@
 #include <string.h>
 
 #include "ascii_art.h"
-#include "dependency.h"
+#include "dependency_d.h"
+#include "dependency_b.h"
 #include "tasks.h"
 #include "display_Gantt.h"
 #include "my_library.h"
