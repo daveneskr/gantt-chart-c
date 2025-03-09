@@ -69,8 +69,7 @@ int main(void)
                 {
                     // print dependency chain
                     printf("\nDependency Chain:\n");
-                    int visited[MAX_TASKS] = {0}; // track visited tasks
-                    print_dependency_chain(tasks, tasks[i].id, visited);
+                    print_dependency_chain(tasks, tasks[i].id);
                 }
             }
         }
