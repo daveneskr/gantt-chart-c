@@ -14,7 +14,7 @@ typedef struct
     unsigned int start_month;
     unsigned int end_month;
     unsigned int dependencies; // number of dependencies
-    unsigned int dependency_id[MAX_TASKS-1];
+    unsigned int dependency_id[MAX_TASKS-1]; // array to store the id's of dependent tasks
 } Task;
 
 /* Displays the welcoming message and users options
@@ -65,7 +65,10 @@ void initial_action(Task tasks[], unsigned int *num_tasks);
  */
 void action_edit(Task tasks[], unsigned int num_tasks);
 
-
+/* Prompts user to test task's dependencies
+ * - Task tasks[]: array of Task for which user picks a task to edit
+ * - unsigned int *num_tasks: Number of tasks stored in the array
+ */
 void action_test(Task tasks[], unsigned int num_tasks);
 
 #endif //TASKS_H

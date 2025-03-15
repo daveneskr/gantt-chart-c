@@ -49,3 +49,9 @@
 5	262	1742034094412821739	CMakeFiles/Assignment_2.dir/display_Gantt.c.o	a959ec0c156a47d6
 5	264	1742034094413047812	CMakeFiles/Assignment_2.dir/tasks.c.o	8d6d09b9d442a306
 264	448	1742034094672342931	Assignment_2	471a2c7eb904924b
+5	241	1742034568314643811	CMakeFiles/Assignment_2.dir/dependency_d.c.o	2be2da2d439103ea
+6	242	1742034568315220161	CMakeFiles/Assignment_2.dir/display_Gantt.c.o	a959ec0c156a47d6
+8	242	1742034568317516642	CMakeFiles/Assignment_2.dir/dependency_b.c.o	205ee33d3b17af1
+4	242	1742034568313597399	CMakeFiles/Assignment_2.dir/main.c.o	5ebe34f485f3ec82
+7	244	1742034568316455022	CMakeFiles/Assignment_2.dir/tasks.c.o	8d6d09b9d442a306
+244	396	1742034568553627168	Assignment_2	471a2c7eb904924b

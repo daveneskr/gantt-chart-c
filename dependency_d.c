@@ -14,12 +14,7 @@
 void print_dependency_chain_d(Task tasks[], int task_id, int visited[])
 {
     static int depth = 0; // keep track depth level
-
-    // set depth to zero on the next call from main
-    if (depth < 0)
-    {
-        depth = 0;
-    }
+    depth++; // increase depth when entering the function
 
     // if task is already visited in this recursion, cycle detected
     if (visited[task_id])
@@ -46,13 +41,12 @@ void print_dependency_chain_d(Task tasks[], int task_id, int visited[])
         // if branched, indent branch based on depth
         if (i > 0)
         {
-            for (int j = 0; j < depth; j++)
+            for (int j = 0; j < depth-1; j++)
             {
                 printf("     ");
             }
         }
         printf("->%2d ", task_id+1);
-        depth++; // increase depth before going into the recursive call
         print_dependency_chain_d(tasks, tasks[task_id].dependency_id[i], visited);
     }
 
