@@ -3,7 +3,6 @@
 //
 
 #include "dependency_d.h"
-#include "my_library.h"
 #include <stdio.h>
 
 /* Recursively prints the dependency chain of a given task,

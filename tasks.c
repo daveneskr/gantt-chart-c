@@ -8,6 +8,7 @@
 
 #include "tasks.h"
 #include "my_library.h"
+#include "dependency_d.h"
 
 /* Displays the welcoming message and users options
  */
@@ -28,7 +29,7 @@ void initialize_test_values(Task tasks[], unsigned int *num_tasks)
     // enum statement for clearer identification of tasks
     enum Task_ID {
         FIND_BANK,
-        GET_MORTGAGE_APPROVAL,
+        GET_MORTGAGE,
         DRAW_DOWN,
         BUILD_FOUNDATION,
         BUILD_WALLS,
@@ -40,8 +41,8 @@ void initialize_test_values(Task tasks[], unsigned int *num_tasks)
     };
 
     tasks[0] = (Task){FIND_BANK, "Find_Bank", 1, 2, 0, {}};
-    tasks[1] = (Task){GET_MORTGAGE_APPROVAL, "Get_mortage_approval", 2, 2, 1, {FIND_BANK}};
-    tasks[2] = (Task){DRAW_DOWN, "Draw_Down", 4, 6, 2, {FIND_BANK,GET_MORTGAGE_APPROVAL}};
+    tasks[1] = (Task){GET_MORTGAGE, "Get_mortgage", 2, 2, 1, {FIND_BANK}};
+    tasks[2] = (Task){DRAW_DOWN, "Draw_Down", 4, 6, 2, {FIND_BANK,GET_MORTGAGE}};
     tasks[3] = (Task){BUILD_FOUNDATION, "Build_Foundation", 3, 4, 1, {DRAW_DOWN}};
     tasks[4] = (Task){BUILD_WALLS, "Build_Walls", 4, 5, 0, {}};
     tasks[5] = (Task){ROOF_AND_CEILING, "Roof_and_ceiling", 5, 6, 2, {BUILD_FOUNDATION,BUILD_WALLS}};
@@ -135,7 +136,7 @@ void get_Task_data(Task tasks[], unsigned int * num_tasks)
     {
         // prompts user to enter task name
         puts("Please enter the task name:");
-        scanf("%s", tasks[i].name); // store name in char array
+        scanf("%19s", tasks[i].name); // store name in char array
 
         // initialize task id
         tasks[i].id = i;
@@ -166,7 +167,7 @@ void initial_action(Task tasks[], unsigned int *num_tasks)
     // continue getting input from user until valid input is inserted
     do
     {
-        scanf("%s", response); // get user input
+        scanf("%19s", response); // get user input
 
         // check if user wants to work with testing values
         if (strcmp(response, "test") == 0)
@@ -189,7 +190,7 @@ void initial_action(Task tasks[], unsigned int *num_tasks)
  * - Task tasks[]: array of Task for which user picks a task to edit
  * - unsigned int *num_tasks: Number of tasks stored in the array
  */
-void action_edit(Task tasks[], unsigned int *num_tasks)
+void action_edit(Task tasks[], unsigned int num_tasks)
 {
     char response[20];
     int i;
@@ -199,10 +200,10 @@ void action_edit(Task tasks[], unsigned int *num_tasks)
     do
     {
         puts("Please enter the task name you wish to change exactly");
-        scanf("%s", response);
+        scanf("%19s", response);
 
         // go through each task and see if it matches the response
-        for (i = 0; i < *num_tasks; i++)
+        for (i = 0; i < num_tasks; i++)
         {
             // if yes, break loop early, change guard
             if (strcmp(tasks[i].name, response) == 0)
@@ -221,5 +222,42 @@ void action_edit(Task tasks[], unsigned int *num_tasks)
     get_months(&tasks[i].start_month, &tasks[i].end_month);
 
     // get new dependencies
-    get_dependencies(&tasks[i].dependencies, tasks[i].dependency_id, *num_tasks);
+    get_dependencies(&tasks[i].dependencies, tasks[i].dependency_id, num_tasks);
+}
+
+/* Prompts user to test task's dependencies
+ * - Task tasks[]: array of Task for which user picks a task to edit
+ * - unsigned int *num_tasks: Number of tasks stored in the array
+ */
+void action_test(Task tasks[], unsigned int num_tasks)
+{
+    char response[20];
+    // ask user which task they would like to test
+    puts("Enter the name of the task you would like to test: (Type \"ALL\" to test all tasks.)");
+    scanf("%19s", response);
+
+    int visited[MAX_TASKS] = {0}; // array to track visited tasks in print_dependency_chain
+    // print dependency chains for all tasks
+    if (strcmp("ALL", response) == 0)
+    {
+        for (unsigned int i = 0; i < num_tasks; i++)
+        {
+            // print dependency chain
+            printf("\nDependency Chain for %s:\n", tasks[i].name);
+            print_dependency_chain_d(tasks, tasks[i].id, visited);
+        }
+    }
+    else
+    {
+        // look through tasks to find one matching to response
+        for (unsigned int i = 0; i < num_tasks; i++)
+        {
+            if (strcmp(tasks[i].name, response) == 0)
+            {
+                // print dependency chain
+                printf("\nDependency Chain:\n");
+                print_dependency_chain_d(tasks, tasks[i].id, visited);
+            }
+        }
+    }
 }

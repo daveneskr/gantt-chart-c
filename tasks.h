@@ -9,11 +9,11 @@
 
 typedef struct
 {
-    unsigned int id;
-    char name[20];
+    unsigned int id; // task ID
+    char name[20]; // task name
     unsigned int start_month;
     unsigned int end_month;
-    unsigned int dependencies;
+    unsigned int dependencies; // number of dependencies
     unsigned int dependency_id[MAX_TASKS-1];
 } Task;
 
@@ -63,6 +63,9 @@ void initial_action(Task tasks[], unsigned int *num_tasks);
  * - Task tasks[]: array of Task for which user picks a task to edit
  * - unsigned int *num_tasks: Number of tasks stored in the array
  */
-void action_edit(Task tasks[], unsigned int *num_tasks);
+void action_edit(Task tasks[], unsigned int num_tasks);
+
+
+void action_test(Task tasks[], unsigned int num_tasks);
 
 #endif //TASKS_H

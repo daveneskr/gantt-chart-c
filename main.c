@@ -2,8 +2,6 @@
 #include <string.h>
 
 #include "ascii_art.h"
-#include "dependency_d.h"
-#include "dependency_b.h"
 #include "tasks.h"
 #include "display_Gantt.h"
 #include "my_library.h"
@@ -46,13 +44,13 @@ int main(void)
         puts("\nIf you wish to edit the Gantt please type \"edit\" "
         "/ If you wish to run a test, type \"test\" "
         "or to exit, type \"quit\" and then press enter to execute your option.");
-        scanf("%s", response);
+        scanf("%19s", response);
 
         // if user chooses to edit
         if (strcmp("edit", response) == 0)
         {
             // prompts user to edit a task
-            action_edit(tasks, &num_tasks);
+            action_edit(tasks, num_tasks);
             // clears the previous Gantt diagram
             clear_screen();
             // displays Gantt with edited task
@@ -60,19 +58,8 @@ int main(void)
         }
         else if (strcmp("test", response) == 0)
         {
-            // ask user which task they would like to test
-            puts("Enter the name of the task you would like to test:");
-            scanf("%s", response);
-            // look through tasks to find one matching to response
-            for (unsigned int i = 0; i < num_tasks; i++)
-            {
-                if (strcmp(tasks[i].name, response) == 0)
-                {
-                    // print dependency chain
-                    printf("\nDependency Chain:\n");
-                    print_dependency_chain(tasks, tasks[i].id);
-                }
-            }
+            // prompts user to test tasks dependencies
+            action_test(tasks, num_tasks);
         }
     } while (strcmp("quit", response) != 0);
 

@@ -6,6 +6,6 @@
 #include "my_library.h"
 #include "tasks.h"
 
-void print_dependency_chain(Task tasks[], int task_id);
+void print_dependency_chain_d(Task tasks[], int task_id, int visited[]);
 
 #endif // DEPENDENCY_H

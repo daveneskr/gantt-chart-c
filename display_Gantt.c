@@ -13,7 +13,7 @@
 void print_char(char a)
 {
     // print character (size of big header cell, month header cell * 12, dependencies header cell) times
-    for (int k = 0; k < (12 * 11) + 21 + 13; k++)
+    for (int k = 0; k < 26 + (12 * 11) + 13; k++)
     {
         printf("%c", a);
     }
@@ -40,7 +40,7 @@ void print_cell(char *string, int width)
 void print_header(void)
 {
     print_char('_'); // print separation line
-    printf("%20s", ""); // print first cell (empty space)
+    printf("%25s", ""); // print first cell (empty space)
     // initialize columns array of strings
     static char columns[][13] = { "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December", "Dependencies"};
