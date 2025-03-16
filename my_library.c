@@ -3,6 +3,7 @@
 //
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "my_library.h"
 
@@ -72,4 +73,15 @@ void clear_screen(void)
     system("clear");
 
 #endif
+}
+
+void clear_stdin(void)
+{
+    int c;
+    do
+    {
+        // continue reading from stdin until '\n' is found
+        c = getchar();
+    }
+    while ((c != '\n'));
 }

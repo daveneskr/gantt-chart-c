@@ -42,9 +42,10 @@ int main(void)
     do
     {
         puts("\nIf you wish to edit the Gantt please type \"edit\" "
-        "/ If you wish to run a test, type \"test\" "
-        "or to exit, type \"quit\" and then press enter to execute your option.");
+            "/ If you wish to run a test, type \"test\" "
+            "or to exit, type \"quit\" and then press enter to execute your option.");
         scanf("%19s", response);
+        clear_stdin();
 
         // if user chooses to edit
         if (strcmp("edit", response) == 0)

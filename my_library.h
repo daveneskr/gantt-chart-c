@@ -25,4 +25,6 @@ void bubble_sort(int arr[], int size);
  */
 void clear_screen(void);
 
+void clear_stdin(void);
+
 #endif //MY_LIBRARY_H
