@@ -11,7 +11,7 @@
  * - int task_id: the id of the current task
  * - int visited[]: array used to track visited tasks
  */
-void print_dependency_chain_d(Task tasks[], int task_id, int visited[])
+void print_dependency_chain(Task tasks[], int task_id, int visited[])
 {
     static int depth = 0; // keep track depth level
     depth++; // increase depth when entering the function

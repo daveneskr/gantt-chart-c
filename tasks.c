@@ -8,7 +8,7 @@
 
 #include "tasks.h"
 #include "my_library.h"
-#include "dependency_d.h"
+#include "dependency.h"
 
 /* Displays the welcoming message and users options
  */
@@ -263,7 +263,7 @@ void action_test(Task tasks[], unsigned int num_tasks)
         {
             // print dependency chain
             printf("\nDependency Chain for %s:\n", tasks[i].name);
-            print_dependency_chain_d(tasks, tasks[i].id, visited);
+            print_dependency_chain(tasks, tasks[i].id, visited);
         }
     }
     else
@@ -275,7 +275,7 @@ void action_test(Task tasks[], unsigned int num_tasks)
             {
                 // print dependency chain
                 printf("\nDependency Chain:\n");
-                print_dependency_chain_d(tasks, tasks[i].id, visited);
+                print_dependency_chain(tasks, tasks[i].id, visited);
             }
         }
     }
