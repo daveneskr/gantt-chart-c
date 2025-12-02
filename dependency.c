@@ -2,7 +2,7 @@
 // Created by David Neškrabal on 03.03.2025.
 //
 
-#include "dependency_d.h"
+#include "dependency.h"
 #include <stdio.h>
 
 /* Recursively prints the dependency chain of a given task,
@@ -47,7 +47,7 @@ void print_dependency_chain(Task tasks[], int task_id, int visited[])
             }
         }
         printf("->%2d ", task_id+1);
-        print_dependency_chain_d(tasks, tasks[task_id].dependency_id[i], visited);
+        print_dependency_chain(tasks, tasks[task_id].dependency_id[i], visited);
     }
 
     visited[task_id] = 0; // un-flag task
